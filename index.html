@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado Gerado!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/styles.css%40v%3D2.25.css">
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <script src="js/gsap.min.js"></script>
+    <style>
+        #cover {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #2563EB;
+            z-index: 1000;
+        }
+
+        #content {
+            opacity: 0;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #page-container {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <script>
+        var valorFinal = parseFloat(17240.90);
+
+        function getQueryParams() {
+            var params = {};
+            var parser = document.createElement('a');
+            parser.href = window.location.href;
+            var query = parser.search.substring(1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                params[pair[0]] = decodeURIComponent(pair[1]);
+            }
+            return params;
+        }
+
+        function setUserName() {
+            var queryParams = getQueryParams();
+            var nome = queryParams.nome || 'Visitante'; // Define 'Visitante' como padrão caso não haja nome na URL
+            document.getElementById('nomeUsuario').textContent = nome;
+            document.getElementById('nomeCurto').textContent = nome.split(' ')[0]; // Exibe apenas o primeiro nome
+            adjustPageHeight();
+        }
+
+        function adjustPageHeight() {
+            var contentHeight = document.getElementById('resultado').offsetHeight;
+            document.getElementById('page-container').style.height = contentHeight + 'px';
+        }
+
+        window.addEventListener('load', function() {
+            setUserName();
+            gsap.to("#cover", {
+                duration: 1,
+                height: "100%",
+                ease: "power2.inOut",
+                delay: 1
+            });
+            gsap.to("#cover", {
+                duration: 1,
+                height: "0%",
+                ease: "power2.inOut",
+                delay: 3,
+                onComplete: function() {
+                    document.getElementById('content').style.opacity = "1";
+                }
+            });
+        });
+    </script>
+</head>
+
+<body style="margin-top: 20px;">
+    <div id="cover"></div>
+    <div id="content">
+        <div id="page-container">
+            <div id="resultado">
+                <!-- Sessão 1 -->
+                <div class="sessao1">
+                    <h2 class="titulo">🎉 Parabéns, <span id="nomeUsuario" class="nome">Visitante</span> !</h2>
+                    <div class="traco">
+                        <div class="circulo"></div>
+                    </div>
+                    <p class="mensagem"><b id="nomeCurto">Visitante</b>, Pode Resgatar Até:</p>
+                    <p class="valor">R$0,00</p>
+                    <div class="center">
+                        <button class="saldo-existente">Saldo Verificado</button>
+                        <p class="timer">Disponível por <span class="tempo">17:00</span></p>
+                    </div>
+                </div>
+                <div class="divisor"></div>
+                <!-- Sessão 2 -->
+                <div class="sessao2">
+                    <!-- Alerta -->
+                    <div class="alerta" style="margin: 10px 0px 20px 0px;">
+                        <div class="alerta-content">
+                            <div class="alerta-icon">
+                                <i class="fa fa-check-circle"></i>
+                            </div>
+                            <div class="alerta-text">
+                                <b>TAXA</b>: Pague uma vez, resgate todas as <b>VIAS</b> e o <b>valor pago permanece na sua conta</b> de acesso.
+                            </div>
+                        </div>
+                        <div class="alerta-close" id="closeAlerta">
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sessão 4 -->
+                <div class="sessao4">
+                    <script src="js/jquery.min.js"></script>
+                    <script src="js/iframeResizer.min.js"></script>
+                    <script src="script.js%40v%3D1.33.txt"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
